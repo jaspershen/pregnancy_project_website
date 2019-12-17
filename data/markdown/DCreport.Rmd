@@ -1,0 +1,339 @@
+---
+title: ""
+output: html_document
+
+params:
+  dc.ba.info: NA
+  dc.data.info: NA
+  dc.data.profile.plot: NA
+  dc.data.profile.plot2: NA
+  dc.peak.mv.ratio.plot: NA
+  dc.sample.mv.ratio.plot: NA
+  dc.peak.zero.ratio.plot: NA
+  dc.peak.zero.ratio.plot2: NA
+  dc.sample.zero.ratio.plot: NA
+  dc.sample.zero.ratio.plot2: NA
+  dc.qa1.pca.score.plot.for.report: NA
+  dc.qa2.pca.score.plot.for.report: NA
+  dc.qc.int.boxplot: NA
+  dc.qc.int.boxplot2: NA
+  dc.peak.rsd.plot.for.report: NA
+  dc.peak.rsd.plot.for.report2: NA
+  dc.ba.params: NA
+  dc.mv.params: NA
+  dc.zero.params: NA
+  dc.dn.params: NA
+  dc.di.params: NA
+  dc.os.params: NA
+  dc.rsd.comparison: NA
+  dc.di.rsd.comparison: NA
+  dc.os.pca.plot: NA
+  dc.os.zero.plot: NA
+---
+
+
+<!-- <center>![](logo2.png)</center> -->
+<img src = "http://shenxt.me/image/metflow%20logo3.png" class = "img-topic" width = "800" align="middle" />
+<h1>**Analysis Report of Data Cleaning**</h1>
+<h4>Laboratory for Mass Spectrometry and Metabolomics ([ZHU LAB](http://www.zhulab.cn/))</h4>
+<h4>IRCBC, Chinese Academy of Sciences, Shanghai, China.</h4>
+<h4>`r format(Sys.Date())`</h4>
+
+---
+
+### **<font color = "lightseagreen">INTRODUCTION</font>**
+
+<h4> <p style="line-height:1.5em;">**MetFlow (version 1.2)**: Created in 2018 by [Xiaotao Shen](http://shenxt.me/cv/) from Dr. Zheng-Jiang Zhu lab, Chinese Academy of Sciences.</p> </h4>
+
+---
+
+### **<font color = "lightseagreen">INFORMATION OF DATA</font>** 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+params$dc.data.info
+```
+
+---
+
+### **<font color = "lightseagreen">PARAMETERS</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+dc.ba.params <- params$dc.ba.params
+dc.mv.params <- params$dc.mv.params
+dc.zero.params <- params$dc.zero.params
+dc.dn.params <- params$dc.dn.params
+dc.di.params <- params$dc.di.params
+dc.os.params <- params$dc.os.params
+  
+
+parameters <- rbind(
+            dc.ba.params,
+            dc.mv.params,
+            dc.zero.params,
+            dc.dn.params,
+            dc.di.params,
+            dc.os.params)
+num1 <- nrow(dc.ba.params)
+num2 <- nrow(dc.mv.params) + nrow(dc.zero.params)
+num3 <- nrow(dc.dn.params)
+num4 <- nrow(dc.di.params)
+num5 <- nrow(dc.os.params)
+
+  kable(parameters, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 15) %>%
+   # kable_styling("striped", full_width = FALSE) %>%
+  row_spec(1:num1, 
+           bold = TRUE, color = "#D7261E"
+           # background = "#D7261E"
+           )%>%
+  row_spec((num1 + 1):(num1+num2),
+           bold = TRUE, color = "#0D6EA6"
+           # background = "#F2E41F"
+           )%>%
+  row_spec((num1+num2+1):(num1+num2+num3),
+           bold = TRUE, color = "#2F702F"
+           # background = "#20F591"
+           )%>%
+  row_spec((num1+num2+num3+1):(num1+num2+num3+num4),
+           bold = TRUE, color = "#F720E5"
+           # background = "#F720E5"
+           )%>%
+      row_spec((num1+num2+num3+num4+1):(num1+num2+num3+num4+num5),
+           bold = TRUE, color = "#007C82"
+           # background = "#F720E5"
+           )%>%
+        group_rows("Batch alignment",
+               1, num1,
+               label_row_css = "background-color: #D7261E; color: white;") %>%
+    group_rows("MV and zero value processing",
+               num1 + 1, num1 + num2,
+               label_row_css = "background-color: #0D6EA6; color: white;") %>%
+    group_rows("Data Normalization",
+               num1 + num2 + 1, num1 + num2 + num3, 
+               label_row_css = "background-color: #2F702F; color: white;") %>%
+        group_rows("Data Integration",
+                   num1 + num2 + num3 + 1, num1 + num2 + num3 + num4, 
+               label_row_css = "background-color: #F720E5; color: white;") %>%
+            group_rows("Outliers removal",
+                       num1 + num2 + num3 + num4 + 1, num1 + num2 + num3 + num4 + num5, 
+               label_row_css = "background-color: #007C82; color: white;")
+```
+
+---
+
+### **<font color = "lightseagreen">BATCH ALIGNMENT</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+params$dc.ba.info
+```
+
+
+---
+
+### **<font color = "lightseagreen">DATA QUALITY ASSESSMENT (BEFORE CLEANING)</font>**
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.data.profile.plot)){
+ggplotly(p = params$dc.data.profile.plot, width = 800)  
+}
+```
+
+#### **Data Profile**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.peak.mv.ratio.plot)){
+ggplotly(p = params$dc.peak.mv.ratio.plot, width = 800)  
+}
+```
+
+#### **Missing value ratio (peaks)**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.sample.mv.ratio.plot)){
+ggplotly(p = params$dc.sample.mv.ratio.plot, width = 800)  
+}
+```
+
+#### **Missing value ratio (samples)**
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.peak.zero.ratio.plot)){
+ggplotly(p = params$dc.peak.zero.ratio.plot, width = 800)  
+}
+```
+
+#### **Zero value ratio (peaks)**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.sample.zero.ratio.plot)){
+ggplotly(p = params$dc.sample.zero.ratio.plot, width = 800)  
+}
+```
+
+#### **Zero value ratio (samples)**
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.qa1.pca.score.plot.for.report)){
+ggplotly(p = params$dc.qa1.pca.score.plot.for.report, width = 800)  
+}
+```
+
+#### **PCA score plot (before cleaning)**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.qc.int.boxplot)){
+ggplotly(p = params$dc.qc.int.boxplot, width = 800)  
+}
+```
+
+#### **Sample intensity boxplot**
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.peak.rsd.plot.for.report)){
+ggplotly(p = params$dc.peak.rsd.plot.for.report, width = 800)
+}
+```
+
+#### **RSD distribution**
+
+
+
+---
+### **<font color = "lightseagreen">DATA NORMALIZATION</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.rsd.comparison)){
+ggplotly(p = params$dc.rsd.comparison, width = 800)  
+}
+```
+
+#### **RSD comparison before and after normalization**
+
+
+---
+
+### **<font color = "lightseagreen">DATA INTEGRATION</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.di.rsd.comparison)){
+ggplotly(p = params$dc.di.rsd.comparison, width = 800)  
+}
+```
+
+#### **RSD comparison before and after integration**
+
+---
+
+### **<font color = "lightseagreen">OUTLIER SAMPLES PROCESSING</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.os.pca.plot)){
+ggplotly(p = params$dc.os.pca.plot, width = 800)
+}
+
+```
+
+#### **PCA score plot for outlier samples**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.os.zero.plot)){
+ggplotly(p = params$dc.os.zero.plot, width = 800)
+}
+
+```
+
+#### **Zero value ratio in samples**
+
+
+---
+
+### **<font color = "lightseagreen">DATA QUALITY ASSESSMENT (AFTER CLEANING)</font>**
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.data.profile.plot2)){
+ggplotly(p = params$dc.data.profile.plot2, width = 800)  
+}
+```
+
+#### **Data Profile**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.peak.zero.ratio.plot2)){
+ggplotly(p = params$dc.peak.zero.ratio.plot2, width = 800)  
+}
+```
+
+#### **Zero value ratio (peaks)**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.sample.zero.ratio.plot2)){
+ggplotly(p = params$dc.sample.zero.ratio.plot2, width = 800)  
+}
+```
+
+#### **Zero value ratio (samples)**
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.qa2.pca.score.plot.for.report)){
+ggplotly(p = params$dc.qa2.pca.score.plot.for.report, width = 800)  
+}
+```
+
+#### **PCA score plot (after cleaning)**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.qc.int.boxplot2)){
+ggplotly(p = params$dc.qc.int.boxplot2, width = 800)  
+}
+```
+
+#### **Sample intensity boxplot**
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$dc.peak.rsd.plot.for.report2)){
+ggplotly(p = params$dc.peak.rsd.plot.for.report2, width = 800)
+}
+```
+
+#### **RSD distribution**

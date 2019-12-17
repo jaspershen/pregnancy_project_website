@@ -1,0 +1,37 @@
+The overview of data
+---------------
+
+
+There are 1 batches
+Subject number in each Batch:
+
+561000
+78000
+---------------
+Peak number: 3000
+The tags information contains:
+polarity name mz rt mzmin mzmax rtmin rtmax npeaks OF OFT OM OMT QC YF YM maxint YM03pos isotopes adduct pcgroup ms1name mz rt name ms2name ms2mz ms2rt mzerror rterror forward reverse identification lib from.file
+
+---------------
+Subject sample info:
+Subject sample number: 187
+Subject sample name:
+YF11pos YM30pos YF02pos YM26pos YF10pos YF25pos YM14pos YF21pos YF06pos YF04pos YM05pos YM24pos YM21pos YF32pos YM15pos YF12pos YF13pos YF31pos YM33pos YM18pos YF20pos YF33pos YM25pos YM20pos YM07pos YM17pos YM27pos YM13pos YF26pos YF24pos YF09pos YM31pos YM16pos YM34pos YM12pos YF07pos YF19pos YF01pos YF27pos YF17pos YM23pos YF23pos YF03pos YF15pos YM28pos YM29pos YM32pos YM35pos YM22pos YM19pos OF21pos OM03pos OF09pos OM02pos OF01pos OM10pos OM22pos OF18pos OM31pos OF10pos OM07pos OM05pos OM16pos OF23pos OF04pos OM28pos OF07pos OM20pos OF22pos OM24pos OM18pos OM01pos OF33pos OF28pos OF20pos OM11pos OM06pos OM32pos OF03pos OF16pos OF15pos OF30pos OF06pos OM04pos OF11pos OF25pos OM13pos OF14pos OM33pos OM26pos OM15pos OM35pos OF02pos OF08pos OF27pos OF35pos OM25pos OM29pos OM30pos OM09pos OM17pos OM12pos OM34pos OM14pos OF24pos OF26pos OF31pos OM27pos OF29pos OM23pos OM08pos OM21pos OF32pos OF17pos OF19pos OF13pos OF12pos OF05pos OF34pos OM19pos OFT19pos OFT03pos OFT34pos OMT03pos OFT14pos OMT17pos OFT17pos OFT02pos OFT16pos OMT06pos OFT33pos OFT06pos OFT25pos OFT35pos OMT21pos OFT09pos OMT04pos OMT11pos OMT05pos OMT02pos OFT22pos OMT07pos OMT22pos OFT08pos OFT07pos OFT20pos OFT21pos OMT14pos OMT15pos OFT10pos OFT05pos OMT18pos OFT13pos OMT08pos OMT09pos OFT29pos OMT13pos OFT23pos OFT31pos OFT36pos OMT12pos OFT11pos OFT32pos OMT01pos OFT26pos OMT24pos OFT30pos OFT12pos OFT01pos OMT19pos OFT28pos OMT10pos OMT16pos OFT24pos OFT15pos OFT04pos OMT20pos OFT18pos OMT23pos YF05pos YF16pos YM10pos YM36pos YF22pos YM08pos YF29pos YM09pos
+
+---------------
+QC sample info:
+QC sample number: 26
+QC sample name:
+QC001pos QC002pos QC003pos QC004pos QC005pos QC006pos QC007pos QC008pos QC009pos QC010pos QC011pos QC012pos QC013pos QC014pos QC015pos QC016pos QC017pos QC018pos QC019pos QC020pos QC021pos QC022pos QC023pos QC024pos QC025pos QC026pos
+
+---------------
+Some processing information
+MV imputation: yes
+Imputation method: default
+Zero filter: no
+Zero filter criteria: no
+QC outlier filter: yes
+Normalization: yes
+Normalization method: svr
+Data integration: no
+Data integration method: no

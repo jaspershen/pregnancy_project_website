@@ -1,0 +1,19 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+#### **20181022 Version 1.1**
+
+***
+
+* The first release version.
+
+1. Data cleaning.
+2. Differential metabolite discovery.
+3. More information can be found in the [tutorial](http://pgbwxuy70.bkt.clouddn.com/metflow.tutorial1.1.html)
+4. If you have any questions, please sent email to us, shenxt@sioc.ac.cn or jiangzhu@sioc.ac.cn.
+5. Test account: user name: test, password: test.
+

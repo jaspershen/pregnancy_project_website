@@ -1,0 +1,56 @@
+<!DOCTYPE html>  
+<html>  
+<head lang="en">  
+    <meta charset="UTF-8">  
+    <title>简单的图片切换</title>  
+    <script>  
+        var crr=1;  
+        function changePic(){  
+            var imgObj=document.getElementById("myPic");  
+            imgObj.src=crr+".jpg";  
+  
+        }  
+        window.onload=function(){  
+            document.getElementById("1").addEventListener("click",function(){  
+                crr=1;  
+                changePic();  
+  
+            },false);  
+            document.getElementById("2").addEventListener("click",function(){  
+                crr=2;  
+                changePic();  
+            },false);  
+            document.getElementById("3").addEventListener("click",function(){  
+                crr=3;  
+                changePic();  
+            },false);  
+            document.getElementById("4").addEventListener("click",function(){  
+                crr=4;  
+                changePic();  
+            },false);  
+            document.getElementById("5").addEventListener("click",function(){  
+                crr=5;  
+                changePic();  
+            },false);  
+            document.getElementById("6").addEventListener("click",function(){  
+                crr=6;  
+                changePic();  
+            },false);  
+        }  
+    </script>  
+</head>  
+<body>  
+    <div id="showPic">  
+        <img src="omicschina.png" id="myPic" style="width:620px">  
+    </div>  
+    <div id="ctrlPic">  
+        <button id="1">1</button>  
+         <button id="2">2</button>  
+        <button id="3">3</button>  
+        <button id="4">4</button>  
+        <button id="5">5</button>  
+        <button id="6">6</button>  
+    </div>  
+  
+</body>  
+</html> 

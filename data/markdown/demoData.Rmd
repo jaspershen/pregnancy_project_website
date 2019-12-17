@@ -1,0 +1,74 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+## Data for pPOP
+
+***
+
+To showcase the functionality of MetFlow, we performed the case study using three datasets. The details of three datasets are listed in Table 1. They are derived from two different sample types (serum and urine), two different platforms (LC-MS and GC-MS), and three different data acquisition methods, and have different sample sizes (from 25 to 434 samples). 
+
+
+---
+
+**Table 1. The information of three datasets.**
+
+Dataset ID|Sample type|Sample number|Data acquisition        |Instrument platform
+----------|-----------|-------------|------------------------|-------------------
+1         | Serum     |   384       | Untargeted metabolomics|LC-MS (Q-TOF)     
+2         | Serum     |   25        | Untargeted metabolomics|GC-MS
+3         |  Urine    |   89        |Targeted metabolomics   |LC-MS (QQQ)
+
+
+---
+
+#### <i class="fa fa-file"></i> Dataset #1
+
+The dataset #1 is a large scale metabolomics study that aimed to discover metabolite biomarkers for the early screening of esophagus cancer (EC). Two batches with a total of 384 human serum samples were generated.
+
+<i class="fa fa-download"></i> [Dataset #1 download](https://github.com/jaspershen/demo_data_for_metflow/blob/master/metflow_dataset1.zip).
+
+<i class="fa fa-download"></i> [Raw dataset #1 download](https://github.com/jaspershen/demo_data_for_metflow/blob/master/metflow_dataset1_raw.zip).
+
+
+---
+
+#### <i class="fa fa-file"></i> Dataset #2
+
+The dataset #2 is a GC-MS-based untargeted metabolomics study with 25 serum samples (MetboLights, [MTBLS321](https://www.ebi.ac.uk/metabolights/MTBLS321)). It contains 11 young, non-obese adolescents with HIAE (hyperinsulinemic androgen excess) and 14 age-, weight- and ethnicity-matched healthy controls. More detailed information of dataset #2 (data collection, data preparation, data acquisition and data processing) is provided in the publication [(Domingo-Almenara et al., 2016)](https://pubs.acs.org/doi/abs/10.1021/acs.analchem.6b02927). Only top 1,000 abundant peaks were selected for demo.
+
+<i class="fa fa-download"></i> [Dataset #2 download](https://github.com/jaspershen/demo_data_for_metflow/blob/master/metflow_dataset2.zip).
+
+---
+
+#### <i class="fa fa-file"></i> Dataset #3
+
+The study 3 is a targeted metabolomics study that aimed to discover metabolite biomarkers for the early screening of esophagus cancer (EC) using urine samples. The urine samples were acquired using a UHPLC system (1290 series, Agilent Technologies) coupled to triple quadrupole 6495 (Agilent Technologies) in a dynamic MRM mode. The details of LC-MS analysis has been described in our previous publication [(Zha et al., 2018)](https://pubs.acs.org/doi/10.1021/acs.analchem.7b05318). 
+
+<i class="fa fa-download"></i> [Dataset #3 download](https://github.com/jaspershen/demo_data_for_metflow/blob/master/metflow_dataset3.zip).
+
+
+
+
+
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+</html>
+
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	    //为超链接加上target='_blank'属性
+		$('a[href^="http"]').each(function() {
+			$(this).attr('target', '_blank');
+		});
+	});
+</script>

@@ -1,0 +1,16 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+#### **20181213 Version 1.2**
+
+***
+
+* The second release version.
+
+1. The zero value or missing value ratio are calculated for each group, and only the peaks with ratios in all the groups meet the tolerance will be considered as a noisy peak and be discarded. 
+2. Pathway enrichment analysis is added.
+

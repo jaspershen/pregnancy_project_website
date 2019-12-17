@@ -1,0 +1,20 @@
+Version 1.1.2
+--------------
+o First release version
+o Add MS2 peak table data
+o Reset password system
+
+Version 1.1.3
+--------------
+o Fix bugs in one step data cleaning.
+
+Version 1.2
+--------------
+o The zero value or missing value ratio are calculated for each group, and only the peaks with ratios in all the groups meet the tolerance will be considered as a noisy peak and be discarded.
+o Pathway enrichment analysis is added.
+
+
+
+
+
+

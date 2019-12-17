@@ -1,0 +1,233 @@
+---
+title: ""
+output: html_document
+
+params:
+  da.ua.params: NA
+  da.ma.params: NA
+  da.dm.params: NA
+  da.validation.params: NA
+  da.vocano.plot: NA
+  daMApcaPlot: NA
+  daMAplsPlot: NA
+  daMAhcaHeatmap: NA
+  daValidationPCAplot1: NA
+  daValidationPCAplot2: NA
+  daValidationPLSplot1: NA
+  daValidationPLSplot2: NA
+  daValidationHCAheatmap1: NA
+  daValidationHCAheatmap2: NA
+  daValidationROClplot1: NA
+  daValidationROClplot2: NA
+---
+
+
+<!-- <center>![](logo2.png)</center> -->
+<img src = "http://shenxt.me/image/metflow%20logo3.png" class = "img-topic" width = "800" align="middle" />
+<h1>**Analysis Report of Different Metabolite Discovery**</h1>
+<h4>Laboratory for Mass Spectrometry and Metabolomics ([ZHU LAB](http://www.zhulab.cn/))</h4>
+<h4>IRCBC, Chinese Academy of Sciences, Shanghai, China.</h4>
+<h4>`r format(Sys.Date())`</h4>
+
+---
+
+### **<font color = "lightseagreen">INTRODUCTION</font>**
+
+<h4> <p style="line-height:1.5em;">**MetFlow (version 1.2)**: Created in 2018 by [Xiaotao Shen](http://shenxt.me/cv/) from Dr. Zheng-Jiang Zhu lab, Chinese Academy of Sciences.</p> </h4>
+
+
+
+---
+
+### **<font color = "lightseagreen">PARAMETERS</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+da.ua.params <- params$da.ua.params
+da.ma.params <- params$da.ma.params
+da.dm.params <- params$da.dm.params
+da.validation.params <- params$da.validation.params
+
+  
+
+parameters <- rbind(da.ua.params,
+                    da.ma.params,
+                    da.dm.params,
+            da.validation.params)
+num1 <- nrow(da.ua.params)
+num2 <- nrow(da.ma.params)
+num3 <- nrow(da.dm.params)
+num4 <- nrow(da.validation.params)
+
+  kable(parameters, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 15) %>%
+   # kable_styling("striped", full_width = FALSE) %>%
+  row_spec(1:num1, 
+           bold = TRUE, color = "#D7261E"
+           # background = "#D7261E"
+           )%>%
+  row_spec((num1 + 1):(num1+num2),
+           bold = TRUE, color = "#0D6EA6"
+           # background = "#F2E41F"
+           )%>%
+  row_spec((num1+num2+1):(num1+num2+num3),
+           bold = TRUE, color = "#2F702F"
+           # background = "#20F591"
+           )%>%
+      row_spec((num1+num2+num3+1):(num1+num2+num3+num4),
+           bold = TRUE, color = "#F720E5"
+           # background = "#F720E5"
+           )%>%
+    group_rows("Univariate Analysis",
+               1, num1,
+               label_row_css = "background-color: #D7261E; color: white;") %>%
+    group_rows("Multivariate Analysis",
+               num1 + 1, num1 + num2, 
+               label_row_css = "background-color: #0D6EA6; color: white;") %>%
+        group_rows("Differential Metabolite Selection",
+               num1 + num2 + 1, num1 + num2 + num3, 
+               label_row_css = "background-color: #2F702F; color: white;") %>%
+        group_rows("Performance Validation",
+                   num1 + num2 + num3 + 1, num1 + num2 + num3 + num4, 
+               label_row_css = "background-color: #F720E5; color: white;")
+```
+
+
+
+---
+
+### **<font color = "lightseagreen">UNIVARIATE ANALYSIS</font>**
+
+#### **Volcano Plot**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$da.vocano.plot)){
+ggplotly(p = params$da.vocano.plot, width = 800)  
+}
+```
+
+
+
+---
+
+### **<font color = "lightseagreen">MULTIVARIATE ANALYSIS</font>**
+
+#### **PCA analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$daMApcaPlot)){
+ggplotly(p = params$daMApcaPlot, width = 800)  
+}
+```
+
+#### **PLS analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$daMAplsPlot)){
+ggplotly(p = params$daMAplsPlot, width = 800)  
+}
+```
+
+#### **HCA analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+if(!is.null(params$daMAhcaHeatmap)){
+params$daMAhcaHeatmap
+}
+```
+
+
+
+---
+
+### **<font color = "lightseagreen">VALIDATION</font>**
+
+#### **Discovery Dataset**
+
+#### **PCA analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$daValidationPCAplot1)){
+ggplotly(p = params$daValidationPCAplot1, width = 800)  
+}
+```
+
+#### **PLS analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$daValidationPLSplot1)){
+ggplotly(p = params$daValidationPLSplot1, width = 800)  
+}
+```
+
+#### **HCA analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+if(!is.null(params$daValidationHCAheatmap1)){
+params$daValidationHCAheatmap1
+}
+```
+
+
+#### **ROC analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+if(!is.null(params$daValidationROClplot1)){
+params$daValidationROClplot1
+}
+```
+
+#### **Validation Dataset**
+
+#### **PCA analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$daValidationPCAplot2)){
+ggplotly(p = params$daValidationPCAplot2, width = 800)  
+}
+```
+
+#### **PLS analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$daValidationPLSplot2)){
+ggplotly(p = params$daValidationPLSplot2, width = 800)  
+}
+```
+
+#### **HCA analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+if(!is.null(params$daValidationHCAheatmap2)){
+params$daValidationHCAheatmap2
+}
+```
+
+
+#### **ROC analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+if(!is.null(params$daValidationROClplot2)){
+params$daValidationROClplot2
+}
+```
+
+
+
+

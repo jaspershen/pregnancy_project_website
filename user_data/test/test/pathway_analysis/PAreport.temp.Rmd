@@ -1,0 +1,82 @@
+---
+title: ""
+output: html_document
+
+params:
+  parameter: NA
+  match.result: NA
+  pa.pathway.plot: NA
+  pa.pathway.table: NA
+---
+
+
+<!-- <center>![](logo2.png)</center> -->
+<img src = "http://shenxt.me/image/metflow%20logo3.png" class = "img-topic" width = "800" align="middle" />
+<h1>**Analysis Report of Pathway Enrichment Analysis**</h1>
+<h4>Laboratory for Mass Spectrometry and Metabolomics ([ZHU LAB](http://www.zhulab.cn/))</h4>
+<h4>IRCBC, Chinese Academy of Sciences, Shanghai, China.</h4>
+<h4>`r format(Sys.Date())`</h4>
+
+---
+
+### **<font color = "lightseagreen">INTRODUCTION</font>**
+
+<h4> <p style="line-height:1.5em;">**MetFlow (version 1.2)**: Created in 2018 by [Xiaotao Shen](http://shenxt.sxl.cn/) from Dr. Zheng-Jiang Zhu lab, Chinese Academy of Sciences.</p> </h4>
+
+
+
+---
+
+### **<font color = "lightseagreen">PARAMETERS</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+parameters <- params$parameter
+
+  kable(parameters, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 15)
+```
+
+---
+
+### **<font color = "lightseagreen">INPUT RESULTS</font>**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+match.result <- params$match.result
+
+  kable(match.result, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 15)
+```
+
+---
+
+### **<font color = "lightseagreen">PATHWAY ENRICHMENT ANALYSIS</font>**
+
+#### **Pathway enrichment overview**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+if(!is.null(params$pa.pathway.plot)){
+ggplotly(p = params$pa.pathway.plot, width = 800)  
+}
+```
+
+#### **Pathway enrichment result**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+pa.pathway.table <- params$pa.pathway.table
+
+  kable(pa.pathway.table, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 15)
+```
+
+
